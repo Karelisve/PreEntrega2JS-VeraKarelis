@@ -1,0 +1,30 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: rgba(115, 64, 47, 0.745);
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+    margin-bottom: 50px;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    border-radius: 80px;
+    
+}
