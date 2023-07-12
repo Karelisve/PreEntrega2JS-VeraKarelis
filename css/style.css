@@ -5,26 +5,51 @@
 }
 
 body {
-    background-color: rgba(115, 64, 47, 0.745);
+    background-image: url(../img/anillof.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment:fixed;
 }
 
 h1 {
     color: rgb(255, 255, 255);
-    font-size: 50px;
+    font-size: 40px;
+    margin-top: 350px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.606);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+p {
+    color: rgb(255, 255, 255);
+    font-size: 40px;
+    font-weight: bold;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    background-color: rgba(0, 0, 0, 0.605);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+div, form {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 300px;
-    margin-bottom: 50px;
+    flex-direction: column;
 }
 
-div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+button {
+    padding: 15px;
+    font-size: 18px;
+    background-color: rgba(121, 119, 119, 0.872);
+    color: rgb(0, 0, 0);
+    border-color: black;
+    border-radius: 10px;
 }
 
-img {
-    border-radius: 80px;
-    
+button:hover {
+    color: white;
+    background-color: rgb(31, 30, 30);
 }

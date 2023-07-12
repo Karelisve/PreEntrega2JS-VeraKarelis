@@ -1,120 +1,148 @@
-alert("Bienvenido a la Aventura del Anillo de Fuego")
-console.log("Bienvenido a la Aventura del Anillo de Fuego")
-
-let personaje = prompt("Elige tu personaje:  aldeano, caballero o un mago")
-console.log("Te has convertido en un: " + personaje)
-
-let aldeanoEntra 
+//declaración de variables
 let caballeroEntra 
 let magoEntra 
+let nombreDeGuerrero
 
-const ARMA_ALDEANO_1 = "Acha de metal encantado";
-const ARMA_ALDEANO_2 = "Daga mágica";
 const ARMA_CABALLERO_1 = "Espada de dragón";
-const ARMA_CABALLERO_2 = "Tridente infame";
+const ARMA_CABALLERO_2 = "Daga encantada";
 const ARMA_MAGO_1 = "Cetro de diamante";
 const ARMA_MAGO_2 = "Báculo de rayos oscuros";
 
+const MIN = 10;
+const MAX = 30;
 
-if (personaje == "aldeano"){
-    console.log("Transitas un sendero fuera del reino, a lo lejos ves una pequeña cabaña")
-    aldeanoEntra = prompt("¿desea entrar a la cabaña?")
+let energiaJugador = 100;
+let energiaMonstruo = 100;
 
-    while (aldeanoEntra.toLowerCase() !== "si" && aldeanoEntra.toLowerCase() !== "no") {
-        aldeanoEntra = prompt("No es una respuesta digna de un aventurero. elige tu destino 'si' o 'no':");
-    }
+//Función para calcular el golpe aleatorio del oponente
+function calcularGolpe(){
+    return Math.ceil(Math.random()*(MAX - MIN) + MIN);
+}
 
-    if (aldeanoEntra.toLowerCase() === "si"){
-        console.log("Al entrar encuentras una " + ARMA_ALDEANO_1)
-    } else {
-        console.log("decides no entrar y seguir tu camino.")
-        console.log("llegas a un puente y encuentras una " + ARMA_ALDEANO_2)
-        console.log("ya con tu nueva arma sigues avanzando y te encuentras de repente con una araña gigante")
-        alert("¡Prepárate para la pelea!")
+const jugadorVivo = () => energiaJugador > 0
+const ambosVivos = ()=> energiaJugador>0 && energiaMonstruo>0
 
-        function pelearConMonstruo() {
-            let vidaMonstruo = 100;
-            let vidaJugador = 100;
-
-            let min = 10
-            let max = 30
-
-            function calcularGolpe(){
-                return Math.ceil(Math.random()*(max -min + 1) + min);
-            }
-
-            while (vidaMonstruo > 0 && vidaJugador > 0) {
-                let golpeMonstruo = calcularGolpe()
-                let golpeJugador = calcularGolpe()
-
-                if(golpeMonstruo == golpeJugador){
-                        console.log("Siga Siga");
-                    } else if(golpeMonstruo > golpeJugador){
-                        vidaMonstruo -= vidaJugador;
-                        console.log("la araña te ha golpeado con " + golpeMonstruo + " puntos");
-                        console.log("tu vida es de " + vidaJugador);
-                    } else {
-                        vidaJugador -= vidaMonstruo;
-                        console.log("Golpeaste a la araña con " + golpeJugador + "puntos")
-                    }
-            }
-
-            // Verificar el resultado de la pelea
-                if (vidaMonstruo <= 0) {
-                    console.log("¡Has derrotado al monstruo! Eres un verdadero héroe.");
-                } else {
-                    console.log("Lamentablemente, el monstruo te ha vencido. Tu aventura llega a su fin.");
-                }
-            }
+//funcion para ejecutar la pelea entre el jugador y el oponente
+function pelea (){
+    while (ambosVivos()) {
+        let golpeJugador = Number(prompt("ES TU MOMENTO DE ATACAR: escribe '20' para golpear o '25' para atacar con el arma"));
+        while (golpeJugador != 20 && golpeJugador != 25) {
+            golpeJugador = prompt("No estas atacando, escribe '20' o '25' para atacar");
         }
-
-    pelearConMonstruo()
-
-
-
-
-
-    
-
-
-} else if (personaje == "caballero") {
-    console.log("Transitas por una aldea abandonada, a lo lejos ves un castillo en ruinas")
-    caballeroEntra = prompt("¿Desea entrar al castillo?")
-
-    while (caballeroEntra.toLowerCase() !== "si" && caballeroEntra.toLowerCase() !== "no") {
-        caballeroEntra = prompt("No es una respuesta digna de un aventurero. elige tu destino 'si' o 'no':");
+        const golpeMonstruo = calcularGolpe();
+        energiaMonstruo -= golpeJugador;
+        energiaJugador -= golpeMonstruo;
+        console.log("Golpeaste al monstruo y le causaste " + golpeJugador + " puntos de daño.");
+        console.log("El monstruo te ha golpeado causandote " + golpeMonstruo + " puntos de daño.");
+        console.log("Tú energía es de " + energiaJugador);
+        console.log("La energía del monstruo es " + energiaMonstruo);
+        console.log("-----------------------------");
     }
-
-    if (caballeroEntra.toLowerCase() === "si") {
-        console.log("Al entrar encuentras un " + ARMA_CABALLERO_1)
+    if (energiaJugador <= 0) {
+        console.log("El monstruo te ha vencido, deshonraste a tu aldea. Intenta de nuevo, todavía puedes ser digno del anillo de fuego");
     } else {
-        console.log("decides no entrar al castillo y seguir tu camino")
-        console.log("de repente caes por un abismo y en el fondo encuentras escondido entre las rocas un " + ARMA_CABALLERO_2)
+        console.log("¡Lo has conseguido! derrotaste al monstruo y ahora puedes recibir tu recompensa");
     }
+}    
 
-} else if (personaje == "mago"){
-    console.log("Transitas un bosque tenebroso, a lo lejos ves una gran cueva")
-    magoEntra = prompt("¿Desea entrar a la cueva?")
+function comenzar(){
+//Empieza el juego
+alert("Bienvenido a la Aventura del Anillo de Fuego")
+console.log("Bienvenido a la Aventura del Anillo de Fuego")
+
+let personaje = prompt("Elige tu personaje: Conviertete en un caballero o en un mago")
+personaje = personaje.toLowerCase();
+console.log("Te has convertido en un: " + personaje)
+
+if (personaje == "caballero") {
+    console.log("Transitas un sendero fuera del reino, a lo lejos ves una pequeña cabaña");
+    caballeroEntra = prompt("¿Desea entrar a la cabaña?");
+    //en caso de obtener una respuesta incorrecta
+    while (caballeroEntra.toLowerCase() !== "si" && caballeroEntra.toLowerCase() !== "no") {
+        caballeroEntra = prompt("No es una respuesta digna de un aventurero. Elige tu destino 'si' o 'no':");
+    }
+    //primer camino a elegir del caballero
+    if (caballeroEntra.toLowerCase() === "si") {
+        console.log("Al entrar encuentras una " + ARMA_CABALLERO_1);
+        console.log("ya con tu nueva arma sales de la cabaña y se abre un portal misterioso que te lleva a un reino en las montañas.")
+        console.log("En el reino ves a todos huyendo y a lo lejos ves que un Ogro del pantano se acerca hacia ti")
+        alert("¡Préparate para luchar!")
+        pelea()
+
+        if(energiaJugador > 0 && caballeroEntra){
+            nombreDeGuerrero = prompt("¿como te llamas guerrero?")
+            console.log(nombreDeGuerrero + " !ERES DIGNO DE RECIBIR EL ANILLO DE FUEGO! ahora el reino está a salvo y todo gracias a ti.")
+            console.log("Tu espada se ha convertido en fuego puro digna de un verdadero guerrero, úsala sabiamente y protege a tus aldeanos. Ya eres digno de ser un caballero de la orden del anillo")
+        }
+    //segunda opción a elegir del caballero
+    } else {
+        console.log("Decides no entrar y seguir tu camino.");
+        console.log("Llegas a un puente que fue encantado hace más de 500 años por una bruja y encuentras una " + ARMA_CABALLERO_2);
+        console.log("Ya con tu nueva arma sigues avanzando y te encuentras de repente con una araña gigante que protege el paso");
+        alert(" No puedes detenerte ¡Prepárate para la pelea!");
+        pelea()
+
+        if(energiaJugador > 0 && caballeroEntra){
+            nombreDeGuerrero = prompt("¿Cómo te llamas guerrero?")
+            console.log(nombreDeGuerrero + " !ERES DIGNO DE RECIBIR EL ANILLO DE FUEGO! por ser un gran aventurero y de un corazón noble te otorgo poder y fuerza ilimmitada.")
+            console.log("Tu daga se ha convertido en fuego puro, usala sabiamente y serás el caballero más temido del continente, ahora puedes ayudar a todos aquellos indefensos que vagan por los senderos.")
+        }
+    }
+    //primera opción a elegir del mago
+} else if (personaje == "mago") {
+    console.log("Transitas un bosque tenebroso, a lo lejos ves una gran cueva");
+    magoEntra = prompt("¿Desea entrar a la cueva?");
 
     while (magoEntra.toLowerCase() !== "si" && magoEntra.toLowerCase() !== "no") {
-        magoEntra = prompt("No es una respuesta digna de un aventurero. elige tu destino 'si' o 'no':");
+        magoEntra = prompt("No es una respuesta digna de un aventurero. Elige tu destino 'si' o 'no':");
     }
 
     if (magoEntra.toLowerCase() === "si") {
-        console.log("Al entrar encuentras un " + ARMA_MAGO_1)
-    } else {
-        console.log("Sigues tu camino y de repente aparece un hada oscura.")
-        console.log("te obsequia un " + ARMA_MAGO_2 + " y te advierte que algo maligno se esta acercando")
-    }
+        console.log("Al entrar encuentras un antiguo altar en donde yace un " + ARMA_MAGO_1);
+        console.log("lo tomas en tus manos y un abismo se abre bajo tus pies")
+        console.log("Caes en un lago donde no encuentras como salir, el cetro se llena de luz y frente a ti aparece una sirena tenebrosa que intenta robarte el cetro")
+        alert("No dejes que te lo robe ¡Préparate para luchar!")
+        pelea()
+        
+        if(energiaJugador > 0 && magoEntra){
+            nombreDeGuerrero = prompt("¿Cómo te llamas guerrero?")
+            console.log(nombreDeGuerrero + " !ENCONTRASTE EL ANILLO DE FUEGO! bienvenido a la orden del anillo, pasaste la prueba de la cueva y ahora posees el cetro mágico del fuego, invoca su poder y tus enemigos temblarán.")
+            console.log("Usalo sabiamente, potencia tu magia y protege al continente de la maldad")
+        }
 
+    //segunda opción a elegir del mago
+    } else {
+        console.log("Decides no entrar a la cueva y seguir tu camino.");
+        console.log("Mientras deambulas por el sendero te topas con una hada oscura y te guía para encontrar entre las raíces de un viejo árbol un " + ARMA_MAGO_2 + " el hada te advierte que algo malo se está acercando");
+        console.log("Tomas el Báculo y de repente la niebla empieza a cubrir todo el sendero, una figura tenebrosa se alza y te pide que devuelvas su báculo")
+        alert("No se lo entregues. ¡Préparate para luchar por su poder!")
+        pelea()
+
+        if(energiaJugador > 0 && magoEntra){
+            nombreDeGuerrero = prompt("¿Cómo te llamas guerrero?")
+            console.log(nombreDeGuerrero + " !DESCUBRISTE EL PODER DEL ANILLO DE FUEGO! tus destrezas en la batalla te han hecho merecedor del anillo, el báculo que encontraste es un objeto robado hace milenios por ese monstruo, ahora te pertenece y cuando invoques su poder se convertirá en fuego puro")
+            console.log("Usalo sabiamente y recorre los bosques con él, brindando luz y justicia a todos los aldeanos y animales en peligro")
+        }
+    }
 } else {
-    console.log("Vuelve a empezar y elige un personaje digno")
+    console.log("Vuelve a empezar y elige un personaje digno");
+}
+reiniciarJuego()
 }
 
-
-
-
-
+// iniciar de nuevo
+function reiniciarJuego() {
+    const reiniciar = confirm("¿Quieres volver a iniciar la aventura?");
+    if (reiniciar) {
+    // se reestablecen las variables
+    energiaJugador = 100;
+    energiaMonstruo = 100;
+    //Comenzar el juego nuevamente
+    comenzar()
+    } else {
+    console.log("Gracias por jugar. ¡Hasta luego guerrero!");
+    }
+}
 
 
 
