@@ -127,22 +127,8 @@ if (personaje == "caballero") {
 } else {
     console.log("Vuelve a empezar y elige un personaje digno");
 }
-reiniciarJuego()
 }
 
-// iniciar de nuevo
-function reiniciarJuego() {
-    const reiniciar = confirm("¿Quieres volver a iniciar la aventura?");
-    if (reiniciar) {
-    // se reestablecen las variables
-    energiaJugador = 100;
-    energiaMonstruo = 100;
-    //Comenzar el juego nuevamente
-    comenzar()
-    } else {
-    console.log("Gracias por jugar. ¡Hasta luego guerrero!");
-    }
-}
 
 
 
