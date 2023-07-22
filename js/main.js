@@ -16,6 +16,7 @@ let energiaMonstruo = 100;
 
 //Función para calcular el golpe aleatorio del oponente
 function calcularGolpe(){
+    
     return Math.ceil(Math.random()*(MAX - MIN) + MIN);
 }
 
@@ -43,7 +44,22 @@ function pelea (){
     } else {
         console.log("¡Lo has conseguido! derrotaste al monstruo y ahora puedes recibir tu recompensa");
     }
-}    
+} 
+
+// iniciar de nuevo
+function reiniciarJuego() {
+    const reiniciar = confirm("¿Quieres volver a iniciar la aventura?");
+    if (reiniciar) {
+    // se reestablecen las variables
+    energiaJugador = 100;
+    energiaMonstruo = 100;
+    //Comenzar el juego nuevamente
+    comenzar()
+    } else {
+    console.log("Gracias por jugar. ¡Hasta luego guerrero!");
+    }
+}
+
 
 function comenzar(){
 //Empieza el juego
@@ -129,21 +145,6 @@ if (personaje == "caballero") {
 }
 reiniciarJuego()
 }
-
-// iniciar de nuevo
-function reiniciarJuego() {
-    const reiniciar = confirm("¿Quieres volver a iniciar la aventura?");
-    if (reiniciar) {
-    // se reestablecen las variables
-    energiaJugador = 100;
-    energiaMonstruo = 100;
-    //Comenzar el juego nuevamente
-    comenzar()
-    } else {
-    console.log("Gracias por jugar. ¡Hasta luego guerrero!");
-    }
-}
-
 
 
 
