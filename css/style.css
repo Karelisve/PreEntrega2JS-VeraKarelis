@@ -4,24 +4,21 @@
     box-sizing: border-box;
 }
 
-.container {
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: center;
-}
 
-section {
-    background-image: url(../img/anillof.jpg);
+body {
+    background-image: url(../img/AnillodeFuego1\ \(1\).jpg);
     background-position: center;
-    background-size: cover;
+    background-size:auto;
     background-attachment:fixed;
 }
 
 h1 {
     color: rgb(255, 255, 255);
-    font-size: 40px;
-    margin-top: 250px;
+    text-align: center;
+    font-size: 30px;
+    margin-top: 300px;
     margin-bottom: 20px;
+    margin-left: 10px;
     background-color: rgba(0, 0, 0, 0.606);
     padding: 10px;
     border-radius: 10px;
@@ -29,17 +26,20 @@ h1 {
 
 .comenzar {
     color: rgb(255, 255, 255);
-    font-size: 40px;
+    text-align: center;
     font-weight: bold;
+    font-size: 30px;
     margin-top: 30px;
     margin-bottom: 40px;
+    margin-left: 10px;
     background-color: rgba(0, 0, 0, 0.605);
-    padding: 10px;
+    padding: 15px;
     border-radius: 10px;
 }
 
 
 .parte1 {
+    margin-left: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,8 +49,9 @@ h1 {
 button {
     padding: 15px;
     font-size: 18px;
-    background-color: rgba(137, 135, 135, 0.872);
+    background-color: rgba(202, 194, 194, 0.872);
     color: rgb(0, 0, 0);
+    font-weight: bold;
     border-color: black;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -59,4 +60,10 @@ button {
 button:hover {
     color: white;
     background-color: rgb(31, 30, 30);
+}
+
+@media screen and (max-height: 800px) {
+    h1 {
+        margin-top: 200px;
+    }
 }
