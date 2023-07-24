@@ -4,7 +4,13 @@
     box-sizing: border-box;
 }
 
-body {
+.container {
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+section {
     background-image: url(../img/anillof.jpg);
     background-position: center;
     background-size: cover;
@@ -21,7 +27,7 @@ h1 {
     border-radius: 10px;
 }
 
-p {
+.comenzar {
     color: rgb(255, 255, 255);
     font-size: 40px;
     font-weight: bold;
@@ -33,7 +39,7 @@ p {
 }
 
 
-div, form {
+.parte1 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,6 +53,7 @@ button {
     color: rgb(0, 0, 0);
     border-color: black;
     border-radius: 10px;
+    margin-bottom: 20px;
 }
 
 button:hover {
