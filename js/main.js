@@ -116,8 +116,6 @@ function elegirLeyenda() {
 
 
 
-
-
 //Programa principal
 function comenzar(){
     //Empieza el juego
@@ -274,7 +272,7 @@ function mostrarHistoriaArmaMagica(arma) {
     console.log(historia);
 }
 
-function volverHistorias() {
+function volverHistorias(){
     const reiniciar = confirm("¿Quieres volver a leer nuestras historias?");
     if (reiniciar) {
         descubrir()
